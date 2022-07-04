@@ -1,14 +1,15 @@
 import "./App.css";
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Home } from "./components/Home";
-import { PageNotFound } from "./components/PageNotFound";
+import { Home } from "./pages/Home";
+import { PageNotFound } from "./pages/PageNotFound";
 import { Switch } from "./components/Switch";
 import { useSelector } from "react-redux";
-import { Nav } from "./components/Nav";
-
+import { Navbar } from "./components/Navbar";
+import { Activate } from "./pages/Activate";
 /* styles */
 import "./PageRoutes.scss";
+import { SignInOrUp } from "./pages/SignInOrUp";
 
 export const PageRoutes = () => {
   const themes = useSelector((store) => store.ui.theme);
@@ -25,14 +26,18 @@ export const PageRoutes = () => {
               display: "flex",
               "justify-content": "space-between",
               alignItems: "center",
-              padding: "5px 10px 0 10px"
+              padding: "5px 10px 0 10px",
+              boxShadow:'0.1px 0.1px 5px var(--navDevider)',
+             
             }}
           >
-            <Nav />
+            <Navbar />
             <Switch />
           </section>
           <Routes>
             <Route exact path="/" element={<Home />}></Route>
+            <Route exact path="/signin" element={<SignInOrUp />}></Route>
+            <Route exact path="/activate/:token" element={<Activate />}></Route>
             <Route path="*" element={<PageNotFound />}></Route>
           </Routes>
         </article>

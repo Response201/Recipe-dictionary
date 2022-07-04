@@ -18,26 +18,29 @@ code {
 :root {
   --dark-green: rgb(59, 76, 33);
   --green: rgb(27, 100, 50);
+  --green-op: rgba(119, 155, 65, 0.5);
 
   --dark-yellow: rgb(222, 176, 80);
   --yellow: rgb(255, 202, 92);
 
-  --switch:rgb(253, 251, 246);
-  
-
   --dark-red: rgb(186, 32, 37);
   --pink: rgb(237, 26, 89);
+
+  --text-primary: rgb(49, 39, 18);
+  --navDevider: rgba(237, 26, 89, 0.257);
 }
 
 .dark {
   --dark-green: rgb(45, 58, 25);
   --green: rgb(18, 68, 34);
+  --green-op: rgba(49, 82, 20, 0.5);
 
-  --dark-yellow: rgb(104, 82, 35);
-  --yellow: rgb(172, 135, 62);
+  --dark-yellow: rgb(222, 176, 80);
+  --yellow: rgb(198, 155, 69);
 
-  --switch:rgb(184, 183, 181);
-  
   --dark-red: rgb(131, 26, 29);
-  --pink: rgb(187, 19, 70);
+  --pink: rgb(234, 32, 87);
+
+  --text-primary: rgb(47, 39, 21);
+  --navDevider: rgb(234, 32, 87, 0.5);
 }
