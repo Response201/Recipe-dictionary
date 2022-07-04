@@ -26,9 +26,8 @@ export const PageRoutes = () => {
               display: "flex",
               "justify-content": "space-between",
               alignItems: "center",
-              padding: "5px 10px 0 10px",
-              boxShadow:'0.1px 0.1px 5px var(--navDevider)',
-             
+              padding: "1.5px 7px 0px 3px",
+              boxShadow: "0.1px 0.1px 5px var(--navDevider)"
             }}
           >
             <Navbar />

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import '../pages/signInOrUp.scss'
 export const SignInorUp = ({
   title,
   inputOne,
@@ -25,10 +25,10 @@ export const SignInorUp = ({
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className='SignInorUp___Form'>
       <h2>{title}</h2>
 
-      <section>
+      <section className="SignInorUp___inputContainer">
         <input
           type="text"
           placeholder={inputOne}

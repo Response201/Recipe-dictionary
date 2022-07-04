@@ -1,3 +1,7 @@
+.con {
+  padding-top: clamp(0.5em, 5vw, 0em);
+}
+
 .switch input {
   position: absolute;
   opacity: 0;
@@ -9,10 +13,10 @@
 
 .switch {
   display: inline-block;
-  font-size: clamp(19px, 2vw, 22px); /* 1 */
+  font-size: clamp(15px, 2vw, 20px); /* 1 */
   height: 1em;
   width: 2.3em;
-  background: var(--dark-yellow);
+  background: var(--primary-one);
   border-radius: 1em;
   padding: 0.2em;
 }

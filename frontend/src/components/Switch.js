@@ -22,8 +22,9 @@ export const Switch = () => {
 
   return (
    
-<div class="container">
-  <label class="switch"><input type="checkbox" onClick={toggleTheme} />    <div></div>
+<div className="con">
+  <label class="switch">
+    <input type="checkbox" onClick={toggleTheme} />    <div></div>
   </label>
 </div>
 

@@ -7,8 +7,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--yellow);
+  background-color: var(--primary-two);
 }
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -20,27 +21,30 @@ code {
   --green: rgb(27, 100, 50);
   --green-op: rgba(119, 155, 65, 0.5);
 
-  --dark-yellow: rgb(222, 176, 80);
-  --yellow: rgb(255, 202, 92);
+  --primary-one: rgba(159, 175, 133, 0.5);
+  --primary-two: rgb(249, 246, 242);
 
   --dark-red: rgb(186, 32, 37);
   --pink: rgb(237, 26, 89);
+  --shadow: rgba(59, 65, 49, 0.5);
 
-  --text-primary: rgb(49, 39, 18);
-  --navDevider: rgba(237, 26, 89, 0.257);
+  --text-primary: rgb(255, 255, 255);
+  --text-secondary: rgb(60, 66, 51);
+  --navDevider: rgb(237, 26, 89, 0.5);
+  --icon-nav:rgb(255, 255, 255);
 }
 
 .dark {
-  --dark-green: rgb(45, 58, 25);
-  --green: rgb(18, 68, 34);
-  --green-op: rgba(49, 82, 20, 0.5);
 
-  --dark-yellow: rgb(222, 176, 80);
-  --yellow: rgb(198, 155, 69);
+
+  --primary-one: rgba(223, 244, 188, 0.5);
+  --primary-two: rgb(47, 47, 47);
 
   --dark-red: rgb(131, 26, 29);
-  --pink: rgb(234, 32, 87);
+  --pink: rgb(204, 28, 75);
+  --shadow: rgb(8, 8, 8);
 
-  --text-primary: rgb(47, 39, 21);
-  --navDevider: rgb(234, 32, 87, 0.5);
+  --text-primary: rgb(249, 246, 242);
+  --navDevider: rgba(29, 4, 10, 0.373);
+  --icon-nav:rgba(233, 255, 197, 0.583);
 }

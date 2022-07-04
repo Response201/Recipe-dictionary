@@ -7,7 +7,7 @@ export const Navbar = () => {
   return (
     <article className='navbarContainer'>
     <Link to="/">
-      <section >
+      <section className='iconContainer' >
         <img src={cherry} alt="logo" /> 
       </section>
     </Link>

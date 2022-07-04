@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { SignInorUp } from "../components/SignInorUpComponent";
-
+import './signInOrUp.scss'
 export const SignInOrUp = () => {
   const [show, setShow] = useState(false);
   const [btn, setBtn] = useState("Create account");
@@ -21,8 +21,8 @@ export const SignInOrUp = () => {
 
 
   return (
-    <section >
-      <h1>signup</h1>
+    <section className="SignInorUp___Container">
+     
       <SignInorUp
         title={title}
         inputOne={"Email"}

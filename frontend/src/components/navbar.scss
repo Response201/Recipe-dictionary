@@ -1,34 +1,38 @@
 .navbarContainer {
   width: 100%;
-
   display: flex;
   justify-content: space-between;
+  align-items: center;
+ 
 
   ul {
+   
     width: 70%;
+    max-width: 550px;
     display: flex;
     justify-content: space-around;
-
     list-style-type: none;
+    padding: 0 auto;
+    margin: 0 ;
      a {
-      border: 5px double var(--yellow);
+      border: 5px double var(--primary-two);
       border-radius:  15px 0;
-      background-color: var(--green-op);
+      background-color: var(--primary-one);
       padding: 3px 4px 5px 3px ;
       text-decoration: none;
-      font-size: clamp(15px, 2vw, 18px);
+      font-size: clamp(9px, 2vw, 18px);
       font-weight: 500;
-      text-shadow:  0.2px 0.2px 1.2px var(--pink);
+      text-shadow:  0px 0px 0px var(--pink);
       color: var(--text-primary);
+      
      
     }
 
-    li { 
-      transition: ease-in-out 0.35s; }
+  
     li:hover, a:hover {
       transform: scale(105%) rotate(-1deg) ;
       color: var(--text-primary);
-      text-shadow:  0.5px 0.5px 2px var(--pink);
+      text-shadow:  0.5px 0.5px 0.6px var(--pink);
     }
   }
 }
@@ -36,12 +40,13 @@
 img {
   border-radius: 50%;
   border: 0.2em solid var(--pink);
-  width: 3em;
-  padding: 0 auto;
-  background-color: transparent;
+  height: clamp(2em, 6vw, 3em);
+  background-color: var(--icon-nav);
   transition: ease-in-out 0.4s;
+
+
 }
 img:hover {
-  background-color: var(--dark-yellow);
+  background-color: var(--primary-one);
   transform: scale(95%);
 }

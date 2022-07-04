@@ -1,0 +1,45 @@
+.SignInorUp___Container {
+  height: 82vh;
+  min-height: 400px;
+  min-width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.SignInorUp___Form {
+  background-color: var(--primary-one);
+  border: 0.1px solid var(--primary-one);
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px var(--shadow);
+  text-shadow: 1px 1px 1px var(--shadow);
+  max-height: 350px;
+  width: 90%;
+  max-width: 550px;
+  padding: 0px 2% 30px 2%;
+  color: var(--text-primary);
+}
+.SignInorUp___inputContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+
+  input {
+    margin-bottom: 10px;
+    height: 30px;
+  }
+}
+
+.dirBtn {
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    background-color: transparent;
+    border: none;
+    color: var(--text-secondary);
+  }
+  button:hover {
+    text-decoration: underline;
+  }
+}
