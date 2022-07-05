@@ -11,12 +11,15 @@
   border: 0.1px solid var(--primary-one);
   border-radius: 5px;
   box-shadow: 5px 5px 5px var(--shadow);
-  text-shadow: 1px 1px 1px var(--shadow);
   max-height: 350px;
   width: 90%;
   max-width: 550px;
   padding: 0px 2% 30px 2%;
   color: var(--text-primary);
+
+  h2 {
+    text-shadow: 2px 2px 1px var(--shadow);
+  }
 }
 .SignInorUp___inputContainer {
   display: flex;
@@ -34,12 +37,12 @@
   display: flex;
   justify-content: flex-end;
 
-  button {
+  div {
     background-color: transparent;
     border: none;
     color: var(--text-secondary);
   }
-  button:hover {
+  div:hover {
     text-decoration: underline;
   }
 }

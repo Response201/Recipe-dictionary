@@ -5,16 +5,18 @@ export const SignInOrUp = () => {
   const [show, setShow] = useState(false);
   const [btn, setBtn] = useState("Create account");
   const [title, setTitle] = useState("Sign In");
-
+const [urlRout, setUrlRout] = useState('signup')
   const onClick = () => {
     if (show) {
       setShow(false);
       setBtn("Create account");
       setTitle("Sign in");
+      setUrlRout('signin')
     } else {
       setShow(true);
       setBtn("Sing in");
       setTitle("Create account");
+      setUrlRout('signup')
     }
   };
 
@@ -27,11 +29,13 @@ export const SignInOrUp = () => {
         title={title}
         inputOne={"Email"}
         inputTwo={"Password"}
-        inputThree={"Firstname"}
-        inputFour={"Lastname"}
+        inputThree={"Username"}
+        inputFour={"Firstname"}
+        inputFive={"Lastname"}
         showExtraInput={show}
         onClick={onClick}
         btnText={btn}
+        urlRout={urlRout}
       />
     </section>
   );
