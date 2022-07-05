@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import {  useParams } from "react-router-dom";
+import {useParams} from "react-router-dom";
 import { batch } from "react-redux";
 
 export const Activate = () => {
   const [message, setMessage] = useState();
   const { token } = useParams();
-
- 
 
   useEffect(async () => {
     const options = {
@@ -22,7 +20,6 @@ export const Activate = () => {
       .then((data) => {
         if (data.response) {
           batch(() => {
-            
             setMessage(data.response.message);
           });
         } else {

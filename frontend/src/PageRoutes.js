@@ -16,7 +16,7 @@ export const PageRoutes = () => {
   React.useEffect(() => {
     document.documentElement.className = themes;
   }, [themes]);
-
+  
   return (
     <>
       <Router>
@@ -36,7 +36,7 @@ export const PageRoutes = () => {
           <Routes>
             <Route exact path="/" element={<Home />}></Route>
             <Route exact path="/signin" element={<SignInOrUp />}></Route>
-            <Route exact path="/activate/:token" element={<Activate />}></Route>
+            <Route exact path="/activate" element={<Activate />}></Route>
             <Route path="*" element={<PageNotFound />}></Route>
           </Routes>
         </article>
