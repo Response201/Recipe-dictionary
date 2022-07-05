@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { batch, useDispatch, useSelector } from "react-redux";
+import {  useParams } from "react-router-dom";
+import { batch } from "react-redux";
 
 export const Activate = () => {
   const [message, setMessage] = useState();
   const { token } = useParams();
 
-  const dispatch = useDispatch();
+ 
 
   useEffect(async () => {
     const options = {
@@ -22,13 +22,12 @@ export const Activate = () => {
       .then((data) => {
         if (data.response) {
           batch(() => {
-            console.log(data.response);
-            console.log(data);
+            
             setMessage(data.response.message);
           });
         } else {
           batch(() => {
-            console.log(data.message);
+           
             setMessage(data.message);
           });
         }
