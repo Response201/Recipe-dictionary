@@ -8,7 +8,7 @@ export const Activate = () => {
 
  
 
-  useEffect( () => {
+  useEffect(async () => {
     const options = {
       method: "POST",
       headers: {
@@ -17,7 +17,7 @@ export const Activate = () => {
       body: JSON.stringify({ token: token })
     };
 
-     fetch(`https://backend-recipe-ect.herokuapp.com/activate`, options)
+    await fetch(`https://backend-recipe-ect.herokuapp.com/activate`, options)
       .then((response) => response.json())
       .then((data) => {
         if (data.response) {
