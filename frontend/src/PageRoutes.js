@@ -10,6 +10,7 @@ import { Activate } from "./pages/Activate";
 /* styles */
 import "./PageRoutes.scss";
 import { SignInOrUp } from "./pages/SignInOrUp";
+import { Profile } from "./pages/Profile";
 
 export const PageRoutes = () => {
   const themes = useSelector((store) => store.ui.theme);
@@ -36,6 +37,7 @@ export const PageRoutes = () => {
           <Routes>
             <Route exact path="/" element={<Home />}></Route>
             <Route exact path="/signin" element={<SignInOrUp />}></Route>
+            <Route exact path="/profile" element={<Profile />}></Route>
             <Route path="/activate/:token" element={<Activate />}></Route>
             <Route path="*" element={<PageNotFound />}></Route>
           </Routes>
