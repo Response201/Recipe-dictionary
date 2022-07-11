@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { batch } from "react-redux";
+import { batch, useDispatch } from "react-redux";
+import { user } from "../reducers/user";
 
-import { SignInorUp } from "../components/SignInorUpComponent";
+
 export const Activate = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [message, setMessage] = useState();
   const { token } = useParams();
 
-  useEffect(async () => {
+
+  useEffect( () => {
     const options = {
       method: "POST",
       headers: {
@@ -17,34 +20,34 @@ export const Activate = () => {
       body: JSON.stringify({ token: token })
     };
 
-    await fetch(`https://backend-recipe-ect.herokuapp.com/activate`, options)
+     fetch(`https://backend-recipe-ect.herokuapp.com/activate`, options)
       .then((response) => response.json())
       .then((data) => {
-        
+       
         if (data.response) {
           batch(() => {
-           
             setMessage(data.response.message);
-            setTimeout(() => {
-              window.location.reload();
-              navigate("/");
-            }, 5000);
-
-
+           
+   
 
           });
         } else {
           batch(() => {
-           
             setMessage(data.message);
-            setTimeout(() => {
-              window.location.reload();
-              navigate("/signin");
-            }, 5000);
+          
+            
+           
           });
         }
+
+        setTimeout(() => {
+             
+          navigate("/signin");
+        }, 3000);
+
+
       });
-  }, []);
+  }, [token, dispatch, navigate]);
 
  
 
