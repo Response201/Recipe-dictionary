@@ -34,7 +34,8 @@ export const Activate = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      navigate("/");
+      navigate('/signin');
+      
     }, 8000);
   }, []);
 
