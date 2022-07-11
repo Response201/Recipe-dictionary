@@ -2,40 +2,15 @@ import { useState, useEffect } from "react";
 import { useDispatch, batch } from "react-redux";
 import { user } from "../reducers/user";
 
-const useFetch = (
-  urls,
-  oneInput,
-  twoInput,
-  threeInput,
-  fourInput,
-  fiveInput
-) => {
-  const [data, setData] = useState(null);
+const useFetch = (urls, options) => {
   const [error, setError] = useState(null);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
 
-  console.log(urls, oneInput, twoInput, threeInput, fourInput, fiveInput);
-
   useEffect(() => {
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        email: oneInput,
-        password: twoInput,
-        username: threeInput,
-        firstname: fourInput,
-        lastname: fiveInput
-      })
-    };
-   
     fetch(urls, options)
-   
       .then((res) => {
         setLoading(true);
         if (!res.ok) {
@@ -82,8 +57,8 @@ const useFetch = (
     setTimeout(() => {
       setMessage("");
     }, 5000);
-  }, [urls]);
+  }, [urls, options, dispatch]);
 
-  return { message, data, loading, error };
+  return { message, loading, error };
 };
 export default useFetch;

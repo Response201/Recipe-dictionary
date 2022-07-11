@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { user } from "../reducers/user";
 import useFetch from "../hook/useFetch";
 import "../pages/signInOrUp.scss";
 import { Loading } from "./Loading";
@@ -23,18 +22,12 @@ export const SignInorUp = ({
   const [fourInput, setFourInput] = useState("");
   const [fiveInput, setFiveInput] = useState("");
   const [url, setUrl] = useState("");
+  const [options, setOptions] = useState({});
   const navigate = useNavigate();
   const accessToken = useSelector((store) => store.user.token);
   const veri = useSelector((store) => store.user.verified);
 
-  const { message, data, loading, error } = useFetch(
-    `${url}`,
-    oneInput,
-    twoInput,
-    threeInput,
-    fourInput,
-    fiveInput
-  );
+  const { message, loading } = useFetch(`${url}`, options);
 
   useEffect(() => {
     if (message.includes("success")) {
@@ -51,7 +44,36 @@ export const SignInorUp = ({
   const onSubmit = (e) => {
     e.preventDefault();
     setUrl(`https://backend-recipe-ect.herokuapp.com/${urlRout}`);
+
+    {
+      urlRout === "signup"
+        ? setOptions({
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              email: oneInput,
+              password: twoInput,
+              username: threeInput,
+              firstname: fourInput,
+              lastname: fiveInput
+            })
+          })
+        : setOptions({
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              email: oneInput,
+              password: twoInput
+            })
+          });
+    }
   };
+
+  console.log(veri)
 
   useEffect(() => {
     if (accessToken && veri) {
