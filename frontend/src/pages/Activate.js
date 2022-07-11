@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, batch } from "react-redux";
 import { user } from "../reducers/user";
+import { SignInOrUp } from "./SignInOrUp";
 export const Activate = () => {
   const [message, setMessage] = useState();
+  const [show, setShow] = useState(false)
   const { token } = useParams();
   const navigate = useNavigate();
   useEffect(async () => {
@@ -34,14 +36,17 @@ export const Activate = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      navigate('/signin');
+      setShow(true)
       
     }, 8000);
   }, []);
 
   return (
     <div className="containerActivate">
-      <h1>{message} </h1>
+
+{show ? <SignInOrUp /> : <h1>{message} </h1> }
+
+      
     </div>
   );
 };
