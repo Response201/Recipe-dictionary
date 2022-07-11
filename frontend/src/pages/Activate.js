@@ -20,10 +20,10 @@ export const Activate = () => {
     await fetch(`https://backend-recipe-ect.herokuapp.com/activate`, options)
       .then((response) => response.json())
       .then((data) => {
-        window.location.reload();
+        
         if (data.response) {
           batch(() => {
-            
+            window.location.reload();
             setMessage(data.response.message);
             setTimeout(() => {
              
@@ -35,7 +35,7 @@ export const Activate = () => {
           });
         } else {
           batch(() => {
-            
+            window.location.reload();
             setMessage(data.message);
             setTimeout(() => {
          
