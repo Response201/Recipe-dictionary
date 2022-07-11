@@ -23,10 +23,10 @@ export const Activate = () => {
         
         if (data.response) {
           batch(() => {
-            window.location.reload();
+           
             setMessage(data.response.message);
             setTimeout(() => {
-             
+              window.location.reload();
               navigate("/");
             }, 5000);
 
@@ -35,10 +35,10 @@ export const Activate = () => {
           });
         } else {
           batch(() => {
-            window.location.reload();
+           
             setMessage(data.message);
             setTimeout(() => {
-         
+              window.location.reload();
               navigate("/signin");
             }, 5000);
           });
