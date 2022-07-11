@@ -4,7 +4,7 @@ import {batch } from "react-redux";
 import { SignInorUp } from "../components/SignInorUpComponent";
 export const Activate = () => {
   const [message, setMessage] = useState();
-  const [show, setShow] = useState(false)
+  const [showActivate, setShowActivate] = useState(false)
   const { token } = useParams();
  
   useEffect(async () => {
@@ -35,14 +35,14 @@ export const Activate = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      setShow(true)
+      setShowActivate(true)
     }, 8000);
   }, []);
 
   return (
     <div className="containerActivate">
 
-{show ? <> <SignInorUp /> </> : <h1>{message} </h1> }
+{showActivate ? <h1> Log in </h1> : <h1>{message} </h1> }
 
       
     </div>
