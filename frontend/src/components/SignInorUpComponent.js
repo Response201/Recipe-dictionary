@@ -90,7 +90,9 @@ export const SignInorUp = ({
                     type="text"
                     placeholder={inputThree}
                     value={threeInput}
-                    onChange={(e) => setThreeInput(e.target.value)}
+                    onChange={(e) =>
+                      setThreeInput(e.target.value.toLocaleLowerCase())
+                    }
                   />
                   <input
                     type="text"
