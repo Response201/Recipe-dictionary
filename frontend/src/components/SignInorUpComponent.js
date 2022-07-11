@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
+import { useDispatch, batch, useSelector } from "react-redux";
+import { user } from "../reducers/user";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import useFetch from "../hook/useFetch";
 import "../pages/signInOrUp.scss";
 import { Loading } from "./Loading";
 export const SignInorUp = ({
@@ -21,13 +21,14 @@ export const SignInorUp = ({
   const [threeInput, setThreeInput] = useState("");
   const [fourInput, setFourInput] = useState("");
   const [fiveInput, setFiveInput] = useState("");
-  const [url, setUrl] = useState("");
-  const [options, setOptions] = useState({});
+  const [error, setError] = useState(null);
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const accessToken = useSelector((store) => store.user.token);
   const veri = useSelector((store) => store.user.verified);
+  const dispatch = useDispatch();
 
-  const { message, loading } = useFetch(`${url}`, options);
 
   useEffect(() => {
     if (message.includes("success")) {
@@ -41,47 +42,91 @@ export const SignInorUp = ({
     }
   }, [message]);
 
+
+
+
+
+
+
   const onSubmit = (e) => {
     e.preventDefault();
-    setUrl(`https://backend-recipe-ect.herokuapp.com/${urlRout}`);
 
-    {
-      urlRout === "signup"
-        ? setOptions({
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              email: oneInput,
-              password: twoInput,
-              username: threeInput,
-              firstname: fourInput,
-              lastname: fiveInput
-            })
-          })
-        : setOptions({
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              email: oneInput,
-              password: twoInput
-            })
-          });
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: oneInput,
+        password: twoInput,
+        username: threeInput,
+        firstname: fourInput,
+        lastname: fiveInput
+      })
     }
-  };
+  
+    fetch(`https://backend-recipe-ect.herokuapp.com/${urlRout}`, options)
+    .then((res) => {
+      setLoading(true);
+      if (!res.ok) {
+        // error coming back from server
+        setMessage(message);
+        setLoading(false);
+      }
+      return res.json();
+    })
+    .then((data) => {
+      setLoading(true);
+      if (data.response) {
+        batch(() => {
+          dispatch(user.actions.setFirstname(data.response.firstname));
+          dispatch(user.actions.setLastname(data.response.lastname));
+          dispatch(user.actions.setUsername(data.response.username));
+          dispatch(user.actions.setEmail(data.response.email));
+          dispatch(user.actions.setToken(data.response.token));
+          dispatch(user.actions.setVerified(data.response.verified));
+          setError(null);
+          setMessage(data.response.message);
+          setLoading(false);
+        });
+      } else {
+        batch(() => {
+          dispatch(user.actions.setFirstname(""));
+          dispatch(user.actions.setLastname(""));
+          dispatch(user.actions.setUsername(""));
+          dispatch(user.actions.setEmail(""));
+          dispatch(user.actions.setToken(""));
+          dispatch(user.actions.setVerified(false));
+          setMessage(data.message);
+          setLoading(false);
+        });
+      }
+    })
+  
+    .catch((err) => {
+      // auto catches network / connection error
+      setLoading(false);
+      setError(err.message);
+    });
 
-  console.log(veri)
+
+
+       
+    }
+  
+
+
 
   useEffect(() => {
-    if (accessToken && veri) {
+    if (accessToken && veri === true) {
       navigate("/profile");
     } else {
       navigate("/signin");
     }
   }, [accessToken, veri, navigate]);
+
+
 
   return (
     <>
@@ -137,6 +182,7 @@ export const SignInorUp = ({
           <button type="submit">{title}</button>
           <br />
           {message}
+          {error}
         </form>
       )}
     </>
