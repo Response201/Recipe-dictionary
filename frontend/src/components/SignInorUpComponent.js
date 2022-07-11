@@ -29,7 +29,6 @@ export const SignInorUp = ({
   const veri = useSelector((store) => store.user.verified);
   const dispatch = useDispatch();
 
-
   useEffect(() => {
     if (message.includes("success")) {
       setTimeout(() => {
@@ -42,18 +41,12 @@ export const SignInorUp = ({
     }
   }, [message]);
 
-
-
-
-
-
-
   const onSubmit = (e) => {
     e.preventDefault();
 
-
     const options = {
       method: "POST",
+
       headers: {
         "Content-Type": "application/json"
       },
@@ -64,59 +57,52 @@ export const SignInorUp = ({
         firstname: fourInput,
         lastname: fiveInput
       })
-    }
-  
+    };
+
     fetch(`https://backend-recipe-ect.herokuapp.com/${urlRout}`, options)
-    .then((res) => {
-      setLoading(true);
-      if (!res.ok) {
-        // error coming back from server
-        setMessage(message);
+      .then((res) => {
+        setLoading(true);
+        if (!res.ok) {
+          // error coming back from server
+          setMessage(message);
+          setLoading(false);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setLoading(true);
+        if (data.response) {
+          batch(() => {
+            dispatch(user.actions.setFirstname(data.response.firstname));
+            dispatch(user.actions.setLastname(data.response.lastname));
+            dispatch(user.actions.setUsername(data.response.username));
+            dispatch(user.actions.setEmail(data.response.email));
+            dispatch(user.actions.setToken(data.response.token));
+            dispatch(user.actions.setVerified(data.response.verified));
+            setError(null);
+            setMessage(data.response.message);
+            setLoading(false);
+          });
+        } else {
+          batch(() => {
+            dispatch(user.actions.setFirstname(""));
+            dispatch(user.actions.setLastname(""));
+            dispatch(user.actions.setUsername(""));
+            dispatch(user.actions.setEmail(""));
+            dispatch(user.actions.setToken(""));
+            dispatch(user.actions.setVerified(false));
+            setMessage(data.message);
+            setLoading(false);
+          });
+        }
+      })
+
+      .catch((err) => {
+        // auto catches network / connection error
         setLoading(false);
-      }
-      return res.json();
-    })
-    .then((data) => {
-      setLoading(true);
-      if (data.response) {
-        batch(() => {
-          dispatch(user.actions.setFirstname(data.response.firstname));
-          dispatch(user.actions.setLastname(data.response.lastname));
-          dispatch(user.actions.setUsername(data.response.username));
-          dispatch(user.actions.setEmail(data.response.email));
-          dispatch(user.actions.setToken(data.response.token));
-          dispatch(user.actions.setVerified(data.response.verified));
-          setError(null);
-          setMessage(data.response.message);
-          setLoading(false);
-        });
-      } else {
-        batch(() => {
-          dispatch(user.actions.setFirstname(""));
-          dispatch(user.actions.setLastname(""));
-          dispatch(user.actions.setUsername(""));
-          dispatch(user.actions.setEmail(""));
-          dispatch(user.actions.setToken(""));
-          dispatch(user.actions.setVerified(false));
-          setMessage(data.message);
-          setLoading(false);
-        });
-      }
-    })
-  
-    .catch((err) => {
-      // auto catches network / connection error
-      setLoading(false);
-      setError(err.message);
-    });
-
-
-
-       
-    }
-  
-
-
+        setError(err.message);
+      });
+  };
 
   useEffect(() => {
     if (accessToken && veri === true) {
@@ -125,8 +111,6 @@ export const SignInorUp = ({
       navigate("/signin");
     }
   }, [accessToken, veri, navigate]);
-
-
 
   return (
     <>
