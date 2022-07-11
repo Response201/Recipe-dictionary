@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { useDispatch, batch } from "react-redux";
-import { user } from "../reducers/user";
+import { useParams } from "react-router-dom";
+import {batch } from "react-redux";
 import { SignInOrUp } from "./SignInOrUp";
 export const Activate = () => {
   const [message, setMessage] = useState();
   const [show, setShow] = useState(false)
   const { token } = useParams();
-  const navigate = useNavigate();
+ 
   useEffect(async () => {
     const options = {
       method: "POST",
