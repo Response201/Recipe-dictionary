@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {batch } from "react-redux";
-import { SignInOrUp } from "./SignInOrUp";
+import { SignInorUp } from "../components/SignInorUpComponent";
 export const Activate = () => {
   const [message, setMessage] = useState();
   const [show, setShow] = useState(false)
@@ -36,14 +36,13 @@ export const Activate = () => {
   useEffect(() => {
     setTimeout(() => {
       setShow(true)
-      
     }, 8000);
   }, []);
 
   return (
     <div className="containerActivate">
 
-{show ? <SignInOrUp /> : <h1>{message} </h1> }
+{show ? <> <SignInorUp /> </> : <h1>{message} </h1> }
 
       
     </div>
