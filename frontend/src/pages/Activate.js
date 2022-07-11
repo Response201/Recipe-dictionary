@@ -26,7 +26,7 @@ export const Activate = () => {
             
             setMessage(data.response.message);
             setTimeout(() => {
-              navigate("/home");
+              navigate("/");
             }, 5000);
 
 
