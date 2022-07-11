@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import {useParams} from "react-router-dom";
-import { batch } from "react-redux";
-
+import { useParams, useNavigate } from "react-router-dom";
+import { useDispatch, batch } from "react-redux";
+import { user } from "../reducers/user";
 export const Activate = () => {
   const [message, setMessage] = useState();
   const { token } = useParams();
-
+  const navigate = useNavigate();
   useEffect(async () => {
     const options = {
       method: "POST",
@@ -24,11 +24,18 @@ export const Activate = () => {
           });
         } else {
           batch(() => {
-           
             setMessage(data.message);
           });
         }
       });
+
+   
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      navigate("/");
+    }, 8000);
   }, []);
 
   return (

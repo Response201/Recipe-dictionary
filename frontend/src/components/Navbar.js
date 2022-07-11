@@ -5,6 +5,7 @@ import cherry from "../images/cherryTest.png";
 import { useSelector } from "react-redux";
 export const Navbar = () => {
   const accessToken = useSelector((store) => store.user.token);
+  const veri = useSelector((store) => store.user.verified);
 
   return (
     <article className="navbarContainer">
@@ -21,7 +22,7 @@ export const Navbar = () => {
           <Link to="/">Reservations</Link>
         </li>
         <li>
-          {accessToken ? (
+          {accessToken && veri? (
             <Link to="/profile">profile</Link>
           ) : (
             <Link to="/signin">Log in</Link>

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { useDispatch, batch, useSelector } from "react-redux";
-import { user } from "../reducers/user";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "../pages/signInOrUp.scss";
 import { Loading } from "./Loading";
+import { UseSignIn } from "../hooks/UseSignIn";
 export const SignInorUp = ({
   title,
   inputOne,
@@ -21,91 +21,41 @@ export const SignInorUp = ({
   const [threeInput, setThreeInput] = useState("");
   const [fourInput, setFourInput] = useState("");
   const [fiveInput, setFiveInput] = useState("");
-  const [error, setError] = useState(null);
-  const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [url, setUrl] = useState();
   const navigate = useNavigate();
   const accessToken = useSelector((store) => store.user.token);
   const veri = useSelector((store) => store.user.verified);
-  const dispatch = useDispatch();
+  const { message, loading } = UseSignIn({
+    url,
+    oneInput,
+    twoInput,
+    threeInput,
+    fourInput,
+    fiveInput
+  });
+  const [displayMessage, setDisplayMessage] = useState("");
 
   useEffect(() => {
-    if (message.includes("success")) {
+    setDisplayMessage(message);
+    setUrl("");
+    if (message.includes("successful"))
       setTimeout(() => {
         setOneInput("");
         setTwoInput("");
         setThreeInput("");
         setFourInput("");
         setFiveInput("");
+        setDisplayMessage("");
       }, 3000);
-    }
   }, [message]);
 
   const onSubmit = (e) => {
     e.preventDefault();
-
-    const options = {
-      method: "POST",
-
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        email: oneInput,
-        password: twoInput,
-        username: threeInput,
-        firstname: fourInput,
-        lastname: fiveInput
-      })
-    };
-
-    fetch(`https://backend-recipe-ect.herokuapp.com/${urlRout}`, options)
-      .then((res) => {
-        setLoading(true);
-        if (!res.ok) {
-          // error coming back from server
-          setMessage(message);
-          setLoading(false);
-        }
-        return res.json();
-      })
-      .then((data) => {
-        setLoading(true);
-        if (data.response) {
-          batch(() => {
-            dispatch(user.actions.setFirstname(data.response.firstname));
-            dispatch(user.actions.setLastname(data.response.lastname));
-            dispatch(user.actions.setUsername(data.response.username));
-            dispatch(user.actions.setEmail(data.response.email));
-            dispatch(user.actions.setToken(data.response.token));
-            dispatch(user.actions.setVerified(data.response.verified));
-            setError(null);
-            setMessage(data.response.message);
-            setLoading(false);
-          });
-        } else {
-          batch(() => {
-            dispatch(user.actions.setFirstname(""));
-            dispatch(user.actions.setLastname(""));
-            dispatch(user.actions.setUsername(""));
-            dispatch(user.actions.setEmail(""));
-            dispatch(user.actions.setToken(""));
-            dispatch(user.actions.setVerified(false));
-            setMessage(data.message);
-            setLoading(false);
-          });
-        }
-      })
-
-      .catch((err) => {
-        // auto catches network / connection error
-        setLoading(false);
-        setError(err.message);
-      });
+    setUrl(`https://backend-recipe-ect.herokuapp.com/${urlRout}`);
   };
 
   useEffect(() => {
-    if (accessToken && veri === true) {
+    if (accessToken && veri) {
       navigate("/profile");
     } else {
       navigate("/signin");
@@ -165,8 +115,7 @@ export const SignInorUp = ({
           </section>
           <button type="submit">{title}</button>
           <br />
-          {message}
-          {error}
+          {displayMessage}
         </form>
       )}
     </>
