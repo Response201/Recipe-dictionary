@@ -40,6 +40,7 @@ export const UseSignIn = ({
           // error coming back from server
           setMessage(message);
           setLoading(false);
+          console.log('helvddvlo')
         }
         return res.json();
       })
@@ -56,6 +57,7 @@ export const UseSignIn = ({
             setError(null);
             setMessage(data.response.message);
             setLoading(false);
+            console.log('true')
             navigate("/signin");
           });
         } else {
@@ -64,7 +66,8 @@ export const UseSignIn = ({
             dispatch(user.actions.setLastname(""));
             dispatch(user.actions.setUsername(""));
             dispatch(user.actions.setEmail(""));
-            dispatch(user.actions.setToken(""));
+            dispatch(user.actions.setToken(data.token));
+            dispatch(user.actions.setId(data.user));
             dispatch(user.actions.setVerified(false));
             setMessage(data.message);
             setLoading(false);

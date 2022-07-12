@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { SignInorUp } from "../components/SignInorUpComponent";
+import { ReSendVerification } from "./ReSendVerification";
 import "./signInOrUp.scss";
 export const SignInOrUp = () => {
   const [show, setShow] = useState(false);
@@ -41,6 +42,9 @@ export const SignInOrUp = () => {
         btnText={btn}
         urlRout={urlRout}
       />
+
+
+
     </section>
   );
 };

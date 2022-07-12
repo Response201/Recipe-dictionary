@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import "../pages/signInOrUp.scss";
 import { Loading } from "./Loading";
 import { UseSignIn } from "../hooks/UseSignIn";
+import { ReSendVerification } from "../pages/ReSendVerification";
+
+
 export const SignInorUp = ({
   title,
   inputOne,
@@ -118,6 +121,7 @@ export const SignInorUp = ({
           <button type="submit">{title}</button>
           <br />
           {displayMessage}
+< ReSendVerification  />
         </form>
       )}
     </>
