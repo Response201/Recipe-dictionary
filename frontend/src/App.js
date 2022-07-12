@@ -2,9 +2,6 @@ import "./App.css";
 import React from "react";
 import { Switch } from "./components/Switch";
 import { Navbar } from "./components/Navbar";
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import { ui } from "./reducers/ui";
-import { user } from "./reducers/user";
 import { PageRoutes } from "./PageRoutes";
 import { useSelector } from "react-redux";
 

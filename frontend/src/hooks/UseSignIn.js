@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, batch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { user } from "../reducers/user";
-
+/*eslint-disable */
 export const UseSignIn = ({
   url,
   oneInput,
@@ -38,9 +38,10 @@ export const UseSignIn = ({
         setLoading(true);
         if (!res.ok) {
           // error coming back from server
+          // eslint-disable-next-line no-use-before-define
           setMessage(message);
           setLoading(false);
-          console.log('helvddvlo')
+          console.log("helvddvlo");
         }
         return res.json();
       })
@@ -57,7 +58,7 @@ export const UseSignIn = ({
             setError(null);
             setMessage(data.response.message);
             setLoading(false);
-            console.log('true')
+            console.log("true");
             navigate("/signin");
           });
         } else {

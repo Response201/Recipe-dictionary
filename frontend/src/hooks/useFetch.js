@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { user } from "../reducers/user";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 export const useFetch = ({ url }) => {
   const [data, setData] = useState("");
@@ -28,7 +27,7 @@ export const useFetch = ({ url }) => {
     };
 
     fetchData();
-  }, [url]);
+  }, [url,token]);
 
   return { data, error, loading };
 };

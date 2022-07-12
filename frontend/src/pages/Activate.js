@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { batch, useDispatch } from "react-redux";
-import { user } from "../reducers/user";
+
 
 export const Activate = () => {
   const navigate = useNavigate();
