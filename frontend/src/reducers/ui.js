@@ -5,6 +5,7 @@ export const ui = createSlice({
   initialState: {
     loading: false,
     theme:'root',
+    message:''
   },
   reducers: {
     setLoading: (state, action) => {
@@ -12,6 +13,10 @@ export const ui = createSlice({
     },  
     setTheme: (state, action) => {
       state.theme = action.payload;
+    },
+    setMessage: (state, action) => {
+      state.message = action.payload;
     }
+
   }
 });

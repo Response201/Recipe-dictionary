@@ -30,6 +30,7 @@ code {
 
   --text-primary: rgb(255, 255, 255);
   --text-secondary: rgb(60, 66, 51);
+  --text-links: rgb(216, 146, 159);
   --navDevider: rgb(237, 26, 89, 0.5);
   --icon-nav:rgb(255, 255, 255);
 }
@@ -45,6 +46,7 @@ code {
   --shadow: rgb(8, 8, 8);
 
   --text-primary: rgb(249, 246, 242);
+  --text-links: rgb(147, 76, 79);
   --navDevider: rgba(29, 4, 10, 0.373);
   --icon-nav:rgba(233, 255, 197, 0.583);
 }

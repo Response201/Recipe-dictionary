@@ -1,4 +1,4 @@
-.SignInorUp___Container {
+.signInorUp___Container {
   height: 82vh;
   min-height: 400px;
   min-width: 200px;
@@ -6,16 +6,29 @@
   justify-content: center;
   align-items: center;
 }
-.SignInorUp___Form {
+
+.signInOrup___content {
   background-color: var(--primary-one);
   border: 0.1px solid var(--primary-one);
   border-radius: 5px;
   box-shadow: 5px 5px 5px var(--shadow);
+
   max-height: 350px;
+
   width: 90%;
   max-width: 550px;
-  padding: 0px 2% 30px 2%;
+  padding: 0px 2% 2% 2%;
   color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.signInOrup___message_reSendVerification {
+  height: 15px;
+}
+
+.SignInorUp___Form {
+  height: 80%;
 
   h2 {
     text-shadow: 2px 2px 1px var(--shadow);
@@ -33,16 +46,32 @@
   }
 }
 
-.dirBtn {
+.btnText_password_verification___container {
   display: flex;
-  justify-content: flex-end;
-
+  min-height: 25px;
+  justify-content: space-between;
+  color: var(--text-primary);
+  font-size: clamp(10px, 1vw, 15px);
   div {
-    background-color: transparent;
-    border: none;
-    color: var(--text-secondary);
+    display: flex;
+    flex-direction: row;
   }
-  div:hover {
-    text-decoration: underline;
+  span {
+    margin-right: 10px;
+    a {
+      color: var(--text-links);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
   }
+}
+
+.text_createAccount {
+  background-color: transparent;
+  border: none;
+}
+.text_createAccount:hover {
+  text-decoration: underline;
 }
