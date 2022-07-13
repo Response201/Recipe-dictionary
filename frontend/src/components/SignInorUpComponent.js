@@ -5,7 +5,7 @@ import "../pages/signInOrUp.scss";
 import { UseSignIn } from "../hooks/UseSignIn";
 import { ReSendVerification } from "./ReSendVerification";
 import { ui } from "../reducers/ui";
-
+/*eslint-disable */
 export const SignInorUp = ({
   title,
   inputOne,
@@ -58,7 +58,26 @@ export const SignInorUp = ({
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setUrl(`https://backend-recipe-ect.herokuapp.com/${urlRout}`);
+    if (urlRout === "signin") {
+      {oneInput.length <= 5 || twoInput.length <= 5 ? 
+        dispatch(
+              ui.actions.setMessage("Please fill out email/password correct")
+            )
+          : setUrl(`https://backend-recipe-ect.herokuapp.com/${urlRout}`);
+      }
+    } else {
+      {
+        oneInput.length <= 5 ||
+        twoInput.length <= 5 ||
+        threeInput.length <= 1 ||
+        fourInput.length <= 1 ||
+        fiveInput.length <= 1
+          ? dispatch(
+              ui.actions.setMessage("Please fill out all infromation correct")
+            )
+          : setUrl(`https://backend-recipe-ect.herokuapp.com/${urlRout}`);
+      }
+    }
   };
 
   useEffect(() => {
@@ -80,12 +99,14 @@ export const SignInorUp = ({
             placeholder={inputOne}
             value={oneInput}
             onChange={(e) => setOneInput(e.target.value.toLocaleLowerCase())}
+            minLength={5}
           />
           <input
             type="password"
             placeholder={inputTwo}
             value={twoInput}
             onChange={(e) => setTwoInput(e.target.value)}
+            minLength={5}
           />
           <>
             {showExtraInput ? (
@@ -97,18 +118,21 @@ export const SignInorUp = ({
                   onChange={(e) =>
                     setThreeInput(e.target.value.toLocaleLowerCase())
                   }
+                  minLength={2}
                 />
                 <input
                   type="text"
                   placeholder={inputFour}
                   value={fourInput}
                   onChange={(e) => setFourInput(e.target.value)}
+                  minLength={2}
                 />
                 <input
                   type="text"
                   placeholder={inputFive}
                   value={fiveInput}
                   onChange={(e) => setFiveInput(e.target.value)}
+                  minLength={2}
                 />
               </>
             ) : (
