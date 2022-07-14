@@ -33,19 +33,18 @@ export const UseSignIn = ({
     };
     if (!url) {
     } else {
+      dispatch(ui.actions.setLoading(true));
       fetch(url, options)
         .then((res) => {
-          dispatch(ui.actions.setLoading(true));
+          dispatch(ui.actions.setLoading(false));
           if (!res.ok) {
             // error coming back from server
-            // eslint-disable-next-line no-use-before-define
-            dispatch(ui.actions.setLoading(false));
-            console.log("helvddvlo");
+            
+            console.log("no response");
           }
           return res.json();
         })
         .then((data) => {
-          dispatch(ui.actions.setLoading(true));
           if (data.response) {
             batch(() => {
               dispatch(user.actions.setFirstname(data.response.firstname));
@@ -55,7 +54,6 @@ export const UseSignIn = ({
               dispatch(user.actions.setToken(data.response.token));
               dispatch(user.actions.setVerified(data.response.verified));
               dispatch(ui.actions.setMessage(data.response.message));
-              dispatch(ui.actions.setLoading(false));
               console.log("true");
               navigate("/signin");
             });
@@ -64,12 +62,10 @@ export const UseSignIn = ({
               dispatch(user.actions.setFirstname(""));
               dispatch(user.actions.setLastname(""));
               dispatch(user.actions.setUsername(""));
-              dispatch(user.actions.setEmail(""));
+              dispatch(user.actions.setEmail(data.email));
               dispatch(user.actions.setToken(data.token));
-              dispatch(user.actions.setId(data.user));
               dispatch(user.actions.setVerified(false));
               dispatch(ui.actions.setMessage(data.message));
-              dispatch(ui.actions.setLoading(false));
             });
           }
         })

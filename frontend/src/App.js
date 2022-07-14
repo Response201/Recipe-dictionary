@@ -1,7 +1,7 @@
 import "./App.css";
 import React from "react";
-import { Switch } from "./components/Switch";
-import { Navbar } from "./components/Navbar";
+import { Switch } from "./feature/Switch";
+import { Navbar } from "./feature/Navbar";
 import { PageRoutes } from "./PageRoutes";
 import { useSelector } from "react-redux";
 

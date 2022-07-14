@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Loading } from "../components/Loading";
+import { Loading } from "../feature/Loading";
 import { SignInorUp } from "../components/SignInorUpComponent";
 import { ui } from "../reducers/ui";
+import { user } from "../reducers/user";
 import "./signInOrUp.scss";
 /*eslint-disable */
 export const SignInOrUp = () => {
@@ -10,7 +11,7 @@ export const SignInOrUp = () => {
   const [btn, setBtn] = useState("Create account");
   const [title, setTitle] = useState("Sign In");
   const [urlRout, setUrlRout] = useState("signin");
-  const pending = useSelector((store) => store.ui.loading);
+  const loading = useSelector((store) => store.ui.loading);
   const message = useSelector((store) => store.ui.message);
   const dispatch = useDispatch();
 
@@ -34,26 +35,30 @@ export const SignInOrUp = () => {
       setTitle("Create account");
       setUrlRout("signup");
       dispatch(ui.actions.setMessage(""));
+      dispatch(user.actions.setEmail(""));
     }
   };
 
   return (
     <article className="signInorUp___Container">
-      {pending && <Loading />}
-      <section className="signInOrup___content">
-        <SignInorUp
-          title={title}
-          inputOne={"Email"}
-          inputTwo={"Password"}
-          inputThree={"Username"}
-          inputFour={"Firstname"}
-          inputFive={"Lastname"}
-          showExtraInput={show}
-          onClick={onClick}
-          btnText={btn}
-          urlRout={urlRout}
-        />
-      </section>
+      {loading ? (
+        <Loading />
+      ) : (
+        <section className="signInOrup___content">
+          <SignInorUp
+            title={title}
+            inputOne={"Email"}
+            inputTwo={"Password"}
+            inputThree={"Username"}
+            inputFour={"Firstname"}
+            inputFive={"Lastname"}
+            showExtraInput={show}
+            onClick={onClick}
+            btnText={btn}
+            urlRout={urlRout}
+          />
+        </section>
+      )}
     </article>
   );
 };

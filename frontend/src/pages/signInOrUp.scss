@@ -51,7 +51,8 @@
   min-height: 25px;
   justify-content: space-between;
   color: var(--text-primary);
-  font-size: clamp(10px, 1vw, 15px);
+  width: 100%;
+  font-size: clamp(14px, 4vw, 16px);
   div {
     display: flex;
     flex-direction: row;
@@ -59,8 +60,10 @@
   span {
     margin-right: 10px;
     a {
+      width: 100%;
       color: var(--text-links);
       text-decoration: none;
+      text-align: center;
     }
     a:hover {
       text-decoration: underline;
@@ -71,6 +74,8 @@
 .text_createAccount {
   background-color: transparent;
   border: none;
+  text-align: end;
+  white-space:nowrap;
 }
 .text_createAccount:hover {
   text-decoration: underline;

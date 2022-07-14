@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./navbar.scss";
-import cherry from "../images/cherryTest.png";
+import cherry from "../assets/cherryTest.png";
 import { useSelector } from "react-redux";
 export const Navbar = () => {
   const accessToken = useSelector((store) => store.user.token);

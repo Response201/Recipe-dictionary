@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "../pages/signInOrUp.scss";
 import { UseSignIn } from "../hooks/UseSignIn";
-import { ReSendVerification } from "./ReSendVerification";
+import { ReSendVerification } from "../feature/ReSendVerification";
 import { ui } from "../reducers/ui";
 /*eslint-disable */
 export const SignInorUp = ({
@@ -25,6 +25,7 @@ export const SignInorUp = ({
   const [fiveInput, setFiveInput] = useState("");
   const [url, setUrl] = useState("");
   const accessToken = useSelector((store) => store.user.token);
+  const email = useSelector((store) => store.user.email);
   const veri = useSelector((store) => store.user.verified);
   const message = useSelector((store) => store.ui.message);
   const dispatch = useDispatch();
@@ -40,6 +41,8 @@ export const SignInorUp = ({
 
   useEffect(() => {
     setUrl("");
+    setOneInput(email);
+    
     if (message.includes("Log in")) {
       setOneInput("");
       setTwoInput("");
@@ -54,18 +57,20 @@ export const SignInorUp = ({
         setFiveInput("");
         dispatch(ui.actions.setMessage(""));
       }, 8000);
-  }, [message, dispatch]);
+  }, [message, dispatch, email]);
 
   const onSubmit = (e) => {
     e.preventDefault();
     if (urlRout === "signin") {
-      {oneInput.length <= 5 || twoInput.length <= 5 ? 
-        dispatch(
+      {
+        oneInput.length <= 5 || twoInput.length <= 5
+          ? dispatch(
               ui.actions.setMessage("Please fill out email/password correct")
             )
           : setUrl(`https://backend-recipe-ect.herokuapp.com/${urlRout}`);
       }
     } else {
+      
       {
         oneInput.length <= 5 ||
         twoInput.length <= 5 ||
