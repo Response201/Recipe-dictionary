@@ -8,6 +8,7 @@ import { Activate } from "./pages/Activate";
 
 import { SignInOrUp } from "./pages/SignInOrUp";
 import { Profile } from "./pages/Profile";
+import { Reset } from "./feature/Reset";
 
 export const PageRoutes = () => {
   return (
@@ -17,6 +18,7 @@ export const PageRoutes = () => {
         <Route exact path="/signin" element={<SignInOrUp />}></Route>
         <Route exact path="/profile" element={<Profile />}></Route>
         <Route exact path="/activate/:token" element={<Activate />}></Route>
+        <Route exact path="/reset" element={<Reset />}></Route>
         <Route path="*" element={<PageNotFound />}></Route>
       </Routes>
     </div>

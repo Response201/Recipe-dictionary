@@ -10,7 +10,6 @@ body {
   background-color: var(--primary-two);
 }
 
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -23,6 +22,10 @@ code {
 
   --primary-one: rgba(159, 175, 133, 0.5);
   --primary-two: rgb(249, 246, 242);
+  --input: rgba(214, 221, 202, 0.5);
+  --input-focus: rgba(190, 199, 175, 0.5);
+  
+  
 
   --dark-red: rgb(186, 32, 37);
   --pink: rgb(237, 26, 89);
@@ -30,23 +33,25 @@ code {
 
   --text-primary: rgb(255, 255, 255);
   --text-secondary: rgb(60, 66, 51);
+  
   --text-links: rgb(216, 146, 159);
   --navDevider: rgb(237, 26, 89, 0.5);
-  --icon-nav:rgb(255, 255, 255);
+  --icon-nav: rgb(255, 255, 255);
 }
 
 .dark {
-
-
   --primary-one: rgba(223, 244, 188, 0.5);
   --primary-two: rgb(47, 47, 47);
+  --input: rgba(159, 175, 133, 0.9);
+  --input-focus: rgba(159, 175, 133, 0.9);
+
 
   --dark-red: rgb(131, 26, 29);
   --pink: rgb(204, 28, 75);
-  --shadow: rgb(8, 8, 8);
+  --shadow: rgba(26, 26, 26, 0.548);
 
   --text-primary: rgb(249, 246, 242);
   --text-links: rgb(147, 76, 79);
   --navDevider: rgba(29, 4, 10, 0.373);
-  --icon-nav:rgba(233, 255, 197, 0.583);
+  --icon-nav: rgba(233, 255, 197, 0.583);
 }

@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "../pages/signInOrUp.scss";
 import { UseSignIn } from "../hooks/UseSignIn";
-import { ReSendVerification } from "../feature/ReSendVerification";
+import { ReSendVerificationOrPassword } from "../feature/ReSendVerification";
 import { ui } from "../reducers/ui";
+import { Reset } from "../feature/Reset";
 /*eslint-disable */
 export const SignInorUp = ({
   title,
@@ -151,10 +152,10 @@ export const SignInorUp = ({
             <span>
               {" "}
               {message.includes("Account not verified") && (
-                <ReSendVerification />
+                <ReSendVerificationOrPassword urlEnd='reSendVerification' />
               )}
               {message.includes("Password is incorrect") && (
-                <a href="wwwfdsfs.com">Send new password</a>
+                <ReSendVerificationOrPassword urlEnd='reset' />
               )}{" "}
             </span>
           </div>
