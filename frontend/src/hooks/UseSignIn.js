@@ -18,11 +18,9 @@ export const UseSignIn = ({
   useEffect(() => {
     const options = {
       method: "POST",
-
       headers: {
         "Content-Type": "application/json"
       },
-
       body: JSON.stringify({
         email: oneInput,
         password: twoInput,
@@ -59,7 +57,7 @@ export const UseSignIn = ({
             });
           } else {
             batch(() => {
-              dispatch(user.actions.setFirstname(""));
+              dispatch(user.actions.setFirstname(data.firstname));
               dispatch(user.actions.setLastname(""));
               dispatch(user.actions.setUsername(""));
               dispatch(user.actions.setEmail(data.email));

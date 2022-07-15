@@ -9,7 +9,9 @@ export const Profile = () => {
 
   const LogOut = () => {
     dispatch(user.actions.setToken(""))
+    dispatch(user.actions.setEmail(""));
     navigate("/signin");
+    
   };
   return (
     <div>

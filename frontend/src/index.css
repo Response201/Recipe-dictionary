@@ -24,8 +24,7 @@ code {
   --primary-two: rgb(249, 246, 242);
   --input: rgba(214, 221, 202, 0.5);
   --input-focus: rgba(190, 199, 175, 0.5);
-  
-  
+  --message-error: rgba(183, 160, 159, 0.5);
 
   --dark-red: rgb(186, 32, 37);
   --pink: rgb(237, 26, 89);
@@ -33,9 +32,9 @@ code {
 
   --text-primary: rgb(255, 255, 255);
   --text-secondary: rgb(60, 66, 51);
-  
+
   --text-links: rgb(216, 146, 159);
-  --navDevider: rgb(237, 26, 89, 0.5);
+  --navDevider: rgba(242, 194, 209, 0.5);
   --icon-nav: rgb(255, 255, 255);
 }
 
@@ -44,7 +43,7 @@ code {
   --primary-two: rgb(47, 47, 47);
   --input: rgba(159, 175, 133, 0.9);
   --input-focus: rgba(159, 175, 133, 0.9);
-
+  --message-error: rgba(175, 140, 133, 0.5);
 
   --dark-red: rgb(131, 26, 29);
   --pink: rgb(204, 28, 75);

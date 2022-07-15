@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { Loading } from "../feature/Loading";
 import { SignInorUp } from "../components/SignInorUpComponent";
 import { ui } from "../reducers/ui";
@@ -13,7 +14,10 @@ export const SignInOrUp = () => {
   const [urlRout, setUrlRout] = useState("signin");
   const loading = useSelector((store) => store.ui.loading);
   const message = useSelector((store) => store.ui.message);
+  const accessToken = useSelector((store) => store.user.token);
+  const veri = useSelector((store) => store.user.verified);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (message.includes("registration successful!"))
@@ -39,6 +43,20 @@ export const SignInOrUp = () => {
     }
   };
 
+  useEffect(() => {
+    if (accessToken && veri) {
+      navigate("/profile");
+     
+    } else {
+      navigate("/signin");
+    }
+  }, [accessToken, veri, navigate]);
+
+
+
+
+
+
   return (
     <article className="signInorUp___Container">
       {loading ? (
@@ -47,11 +65,6 @@ export const SignInOrUp = () => {
         <section className="signInOrup___content">
           <SignInorUp
             title={title}
-            inputOne={"Email"}
-            inputTwo={"Password"}
-            inputThree={"Username"}
-            inputFour={"Firstname"}
-            inputFive={"Lastname"}
             showExtraInput={show}
             onClick={onClick}
             btnText={btn}

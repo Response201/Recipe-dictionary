@@ -5,7 +5,8 @@ export const ui = createSlice({
   initialState: {
     loading: false,
     theme:'root',
-    message:''
+    message:'',
+    code: null
   },
   reducers: {
     setLoading: (state, action) => {
@@ -16,6 +17,9 @@ export const ui = createSlice({
     },
     setMessage: (state, action) => {
       state.message = action.payload;
+    },
+    setCode: (state, action) => {
+      state.code = action.payload;
     }
 
   }

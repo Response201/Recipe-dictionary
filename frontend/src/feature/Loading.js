@@ -1,6 +1,5 @@
 import React from "react";
 import Lottie from "lottie-react";
-import { useLottie } from "lottie-react";
 import walk from "../assets/lotties/63272-walking-taco.json";
 
 export const Loading = () => {
