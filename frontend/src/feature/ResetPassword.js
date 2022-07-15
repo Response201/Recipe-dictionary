@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFetch } from "../hooks/useFetch";
 import { ui } from "../reducers/ui";
@@ -12,10 +12,22 @@ export const ResetPassword = () => {
   const dispatch = useDispatch();
   useFetch({ url });
 
+  useEffect(() => {
+   
+    if (message)
+      setTimeout(() => {
+        
+        dispatch(ui.actions.setMessage(""));
+      }, 5000);
+  }, [message, dispatch]);
+
+
+
   const onSubmit = (e) => {
     e.preventDefault();
 
     if (code.length >= 5) {
+      
       dispatch(ui.actions.setCode(parseInt(code)));
       dispatch(user.actions.setEmail(email));
       setUrl("https://backend-recipe-ect.herokuapp.com/validate");
@@ -51,7 +63,7 @@ export const ResetPassword = () => {
           <div className={message ? "text" : "noText"}> {message}</div>
         </section>
         <section className="reset___btn_container">
-          <button type="submit">Send</button>
+          <button type="submit"> Send </button>
         </section>
       </form>
     </article>
