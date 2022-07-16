@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
 import { ui } from "../reducers/ui";
-import { user } from "../reducers/user";
-import "./resetPassword.scss";
-export const ResetPassword = () => {
-  const [code, setCode] = useState(null);
-  const [email, setEmail] = useState("");
+export const ChangePassword = () => {
+  const [password, setPassword] = useState("");
+  const [checkPassword, setCheckPassword] = useState("");
   const [url, setUrl] = useState("");
   const message = useSelector((store) => store.ui.message);
   const next = useSelector((store) => store.ui.next);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  useFetch({ url });
+
+  useFetch({ url, password });
 
   useEffect(() => {
     if (next === true) {
@@ -24,23 +23,36 @@ export const ResetPassword = () => {
   }, [next, navigate]);
 
   useEffect(() => {
+    if (message.includes("password have been change")) {
+      setTimeout(() => {
+        dispatch(ui.actions.setMessage(""));
+        navigate("/signin");
+        dispatch(ui.actions.setNext(false));
+      }, 5000);
+    }
+
     if (message)
       setTimeout(() => {
         dispatch(ui.actions.setMessage(""));
       }, 5000);
-  }, [message, dispatch]);
+  }, [message, dispatch, navigate]);
 
   const onSubmit = (e) => {
     e.preventDefault();
-
-    if (code.length >= 5) {
-      dispatch(ui.actions.setCode(parseInt(code)));
-      dispatch(user.actions.setEmail(email));
-      setUrl("https://backend-recipe-ect.herokuapp.com/validate");
-    } else {
+    if (password <= 5) {
       dispatch(
-        ui.actions.setMessage("Please check that you enter correct code")
+        ui.actions.setMessage(
+          "Password needs to be at least 6 charachters long"
+        )
       );
+    }
+
+    if (!password === checkPassword) {
+      dispatch(
+        ui.actions.setMessage("Please type the password alike in both inputs")
+      );
+    } else {
+      setUrl("https://backend-recipe-ect.herokuapp.com/change");
     }
   };
 
@@ -51,18 +63,18 @@ export const ResetPassword = () => {
         <section className="reset___input_container">
           <p> Please enter the code that been sent to your email</p>
           <input
-            type="email"
-            placeholder="Email"
-            value={email}
+            type="string"
+            placeholder="Password"
+            value={password}
             minLength={5}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <input
             type="text"
-            placeholder="Enter your code here"
-            value={code}
+            placeholder="Check the password"
+            value={checkPassword}
             minLength={5}
-            onChange={(e) => setCode(e.target.value)}
+            onChange={(e) => setCheckPassword(e.target.value)}
           />
         </section>
         <section className="reset___message_container">

@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
@@ -9,6 +8,7 @@ import { Activate } from "./pages/Activate";
 import { SignInOrUp } from "./pages/SignInOrUp";
 import { Profile } from "./pages/Profile";
 import { ResetPassword } from "./feature/ResetPassword";
+import { ChangePassword } from "./feature/ChangePassword";
 
 export const PageRoutes = () => {
   return (
@@ -19,6 +19,7 @@ export const PageRoutes = () => {
         <Route exact path="/profile" element={<Profile />}></Route>
         <Route exact path="/activate/:token" element={<Activate />}></Route>
         <Route exact path="/reset" element={<ResetPassword />}></Route>
+        <Route exact path="/change" element={<ChangePassword />}></Route>
         <Route path="*" element={<PageNotFound />}></Route>
       </Routes>
     </div>
