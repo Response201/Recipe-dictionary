@@ -55,7 +55,6 @@ export const useFetch = ({ url, password }) => {
           };
           const response = await fetch(url, options);
           const json = await response.json();
-          dispatch(ui.actions.setMessage(json.message));
           dispatch(ui.actions.setNext(json.next));
         }
 
