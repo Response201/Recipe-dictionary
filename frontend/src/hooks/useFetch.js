@@ -7,6 +7,7 @@ export const useFetch = ({ url }) => {
   const token = useSelector((store) => store.user.token);
   const email = useSelector((store) => store.user.email);
   const code = useSelector((store) => store.ui.code);
+  const next = useSelector((store) => store.ui.next);
   const firstname = useSelector((store) => store.user.firstname);
   const dispatch = useDispatch();
 
@@ -57,11 +58,14 @@ export const useFetch = ({ url }) => {
           const response = await fetch(url, options);
           const json = await response.json();
           dispatch(ui.actions.setMessage(json.message));
+          dispatch(ui.actions.setNext(json.next));
         }
       } catch (error) {
         console.log("error", error);
         dispatch(ui.actions.setLoading(false));
         dispatch(ui.actions.setMessage(error.message));
+        dispatch(ui.actions.setNext(error.next));
+        console.log(error)
       }
     };
 
