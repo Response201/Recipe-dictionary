@@ -18,12 +18,17 @@ export const ResetPassword = () => {
   useEffect(() => {
     if (next === true) {
       navigate("/change");
+      dispatch(ui.actions.setMessage(""));
     } else {
       navigate("/reset");
     }
   }, [next, navigate]);
 
   useEffect(() => {
+    if (message.includes("_id")) {
+      dispatch(ui.actions.setMessage("Email-adress & code don't match"));
+    }
+
     if (message)
       setTimeout(() => {
         dispatch(ui.actions.setMessage(""));

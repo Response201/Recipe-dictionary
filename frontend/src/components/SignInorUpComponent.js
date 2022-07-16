@@ -91,7 +91,7 @@ export const SignInorUp = ({
             placeholder="Password"
             value={twoInput}
             onChange={(e) => setTwoInput(e.target.value)}
-            minLength={5}
+            minLength={6}
           />
           <>
             {showExtraInput ? (

@@ -11,8 +11,9 @@ export const useFetch = ({ url, password }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
+      
         if (url.includes("reSendVerification") && token) {
+          try {
           const options = {
             method: "POST",
             headers: {
@@ -23,9 +24,22 @@ export const useFetch = ({ url, password }) => {
           const json = await response.json();
 
           dispatch(ui.actions.setMessage(json.message));
+           }
+           catch (error) {
+          
+            dispatch(ui.actions.setLoading(false));
+            dispatch(ui.actions.setMessage(error.message));
+           
+          }
+
+
         }
 
+
+
         if (url.includes("reset")) {
+          try {
+
           const options = {
             method: "POST",
             headers: {
@@ -39,9 +53,17 @@ export const useFetch = ({ url, password }) => {
           const response = await fetch(url, options);
           const json = await response.json();
           dispatch(ui.actions.setMessage(json.message));
+          
         }
+        catch (error) {
+          console.log("error", error);
+          dispatch(ui.actions.setLoading(false));
+          dispatch(ui.actions.setMessage(error.message));
+          
+        } }
 
         if (url.includes("validate")) {
+          try {
           console.log(code, email);
           const options = {
             method: "POST",
@@ -55,10 +77,20 @@ export const useFetch = ({ url, password }) => {
           };
           const response = await fetch(url, options);
           const json = await response.json();
+          dispatch(ui.actions.setMessage(json.message));
           dispatch(ui.actions.setNext(json.next));
+           }
+           catch (error) {
+            console.log("error", error);
+            dispatch(ui.actions.setLoading(false));
+            dispatch(ui.actions.setMessage(error.message));
+            dispatch(ui.actions.setNext(error.next));
+          
+          }
         }
 
         if (url.includes("change")) {
+          try{
           console.log(password, email);
           const options = {
             method: "POST",
@@ -74,12 +106,14 @@ export const useFetch = ({ url, password }) => {
           const json = await response.json();
           dispatch(ui.actions.setMessage(json.message));
         }
-      } catch (error) {
-        console.log("error", error);
-        dispatch(ui.actions.setLoading(false));
-        dispatch(ui.actions.setMessage(error.message));
-        dispatch(ui.actions.setNext(error.next));
-      }
+        catch (error) {
+       
+          dispatch(ui.actions.setLoading(false));
+          dispatch(ui.actions.setMessage(error.message));
+        
+        }
+        }
+       
     };
 
     fetchData();

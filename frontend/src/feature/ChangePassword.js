@@ -39,41 +39,43 @@ export const ChangePassword = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (password <= 5) {
+
+    if (password.length <= 5) {
       dispatch(
         ui.actions.setMessage(
           "Password needs to be at least 6 charachters long"
         )
       );
-    }
-
-    if (!password === checkPassword) {
-      dispatch(
-        ui.actions.setMessage("Please type the password alike in both inputs")
-      );
     } else {
-      setUrl("https://backend-recipe-ect.herokuapp.com/change");
+      if (password === checkPassword) {
+        setUrl("https://backend-recipe-ect.herokuapp.com/change");
+      } else {
+        dispatch(
+          ui.actions.setMessage("Please type same password in the inputs")
+        );
+      }
     }
   };
 
   return (
     <article className="reset___container">
       <form onSubmit={onSubmit} className="reset___content">
-        <h2>Code verification</h2>
-        <section className="reset___input_container">
-          <p> Please enter the code that been sent to your email</p>
+        <h2>Change Password</h2>
+        <section
+          className="reset___input_container"
+          style={{ textAlign: "left" }}
+        >
+          <p> Please enter a new password</p>
           <input
             type="string"
             placeholder="Password"
             value={password}
-            minLength={5}
             onChange={(e) => setPassword(e.target.value)}
           />
           <input
             type="text"
             placeholder="Check the password"
             value={checkPassword}
-            minLength={5}
             onChange={(e) => setCheckPassword(e.target.value)}
           />
         </section>
