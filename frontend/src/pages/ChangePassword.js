@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { PasswordForm } from "../components/PasswordForm";
 import { useFetch } from "../hooks/useFetch";
 import { ui } from "../reducers/ui";
 export const ChangePassword = () => {
@@ -59,33 +60,17 @@ export const ChangePassword = () => {
 
   return (
     <article className="reset___container">
-      <form onSubmit={onSubmit} className="reset___content">
-        <h2>Change Password</h2>
-        <section
-          className="reset___input_container"
-          style={{ textAlign: "left" }}
-        >
-          <p> Please enter a new password</p>
-          <input
-            type="string"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Check the password"
-            value={checkPassword}
-            onChange={(e) => setCheckPassword(e.target.value)}
-          />
-        </section>
-        <section className="reset___message_container">
-          <div className={message ? "text" : "noText"}> {message}</div>
-        </section>
-        <section className="reset___btn_container">
-          <button type="submit"> Send </button>
-        </section>
-      </form>
+      <PasswordForm
+        onSubmit={onSubmit}
+        Title="Change Password"
+        description="Please enter a new password"
+        inputOne="Password"
+        inputTwo="Check the password"
+        valueOne={password}
+        setValueOne={setPassword}
+        valueTwo={checkPassword}
+        setValueTwo={setCheckPassword}
+      />
     </article>
   );
 };

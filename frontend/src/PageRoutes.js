@@ -7,8 +7,8 @@ import { Activate } from "./pages/Activate";
 
 import { SignInOrUp } from "./pages/SignInOrUp";
 import { Profile } from "./pages/Profile";
-import { ResetPassword } from "./feature/ResetPassword";
-import { ChangePassword } from "./feature/ChangePassword";
+import { ResetPassword } from "./pages/ResetPassword";
+import { ChangePassword } from "./pages/ChangePassword";
 
 export const PageRoutes = () => {
   return (

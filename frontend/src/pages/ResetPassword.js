@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { PasswordForm } from "../components/PasswordForm";
 import { useFetch } from "../hooks/useFetch";
 import { ui } from "../reducers/ui";
 import { user } from "../reducers/user";
@@ -51,32 +52,17 @@ export const ResetPassword = () => {
 
   return (
     <article className="reset___container">
-      <form onSubmit={onSubmit} className="reset___content">
-        <h2>Code verification</h2>
-        <section className="reset___input_container">
-          <p> Please enter the code that been sent to your email</p>
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            minLength={5}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Enter your code here"
-            value={code}
-            minLength={5}
-            onChange={(e) => setCode(e.target.value)}
-          />
-        </section>
-        <section className="reset___message_container">
-          <div className={message ? "text" : "noText"}> {message}</div>
-        </section>
-        <section className="reset___btn_container">
-          <button type="submit"> Send </button>
-        </section>
-      </form>
+      <PasswordForm
+        onSubmit={onSubmit}
+        Title="Code verification"
+        description="Please enter the code that been sent to your email"
+        inputOne="Email"
+        inputTwo="Enter your code here"
+        valueOne={email}
+        setValueOne={setEmail}
+        valueTwo={code}
+        setValueTwo={setCode}
+      />
     </article>
   );
 };

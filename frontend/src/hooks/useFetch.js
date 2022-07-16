@@ -19,9 +19,9 @@ export const useFetch = ({ url, password }) => {
               Authorization: `Bearer ${token}`
             }
           };
+
           const response = await fetch(url, options);
           const json = await response.json();
-
           dispatch(ui.actions.setMessage(json.message));
         } catch (error) {
           dispatch(ui.actions.setLoading(false));
@@ -41,8 +41,10 @@ export const useFetch = ({ url, password }) => {
               firstname: firstname
             })
           };
+          dispatch(ui.actions.setLoading(true));
           const response = await fetch(url, options);
           const json = await response.json();
+          dispatch(ui.actions.setLoading(false));
           dispatch(ui.actions.setMessage(json.message));
         } catch (error) {
           console.log("error", error);
@@ -64,8 +66,10 @@ export const useFetch = ({ url, password }) => {
               code: code
             })
           };
+          dispatch(ui.actions.setLoading(true));
           const response = await fetch(url, options);
           const json = await response.json();
+          dispatch(ui.actions.setLoading(false));
           if (json.message.includes("ok")) {
             dispatch(ui.actions.setNext(json.next));
           }
@@ -92,8 +96,10 @@ export const useFetch = ({ url, password }) => {
               password: password
             })
           };
+          dispatch(ui.actions.setLoading(true));
           const response = await fetch(url, options);
           const json = await response.json();
+          dispatch(ui.actions.setLoading(false));
           dispatch(ui.actions.setMessage(json.message));
         } catch (error) {
           dispatch(ui.actions.setLoading(false));
