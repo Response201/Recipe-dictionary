@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useFetch } from "../hooks/useFetch";
+import { useFetchUser } from "../hooks/useFetchUser";
 /*eslint-disable */
 export const ReSendVerificationOrPassword = ({ urlEnd }) => {
   const [url, setUrl] = useState("");
 
-  useFetch({ url });
+  useFetchUser({ url });
 
   const ReSend = () => {
     setUrl(`https://backend-recipe-ect.herokuapp.com/${urlEnd}`);

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { PasswordForm } from "../components/PasswordForm";
-import { useFetch } from "../hooks/useFetch";
+import { useFetchUser } from "../hooks/useFetchUser";
 import { ui } from "../reducers/ui";
 export const ChangePassword = () => {
   const [password, setPassword] = useState("");
@@ -13,7 +13,7 @@ export const ChangePassword = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useFetch({ url, password });
+  useFetchUser({ url, password });
 
   useEffect(() => {
     if (next === true) {

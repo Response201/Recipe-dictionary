@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { PasswordForm } from "../components/PasswordForm";
-import { useFetch } from "../hooks/useFetch";
+import { useFetchUser } from "../hooks/useFetchUser";
 import { ui } from "../reducers/ui";
 import { user } from "../reducers/user";
 import "./resetPassword.scss";
@@ -14,7 +14,7 @@ export const ResetPassword = () => {
   const next = useSelector((store) => store.ui.next);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  useFetch({ url });
+  useFetchUser({ url });
 
   useEffect(() => {
     if (next === true) {
@@ -23,7 +23,7 @@ export const ResetPassword = () => {
     } else {
       navigate("/reset");
     }
-  }, [next, navigate]);
+  }, [next, navigate,dispatch]);
 
   useEffect(() => {
     if (message.includes("_id")) {
