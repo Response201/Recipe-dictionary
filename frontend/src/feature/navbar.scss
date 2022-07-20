@@ -35,18 +35,22 @@
       text-shadow:  0.5px 0.5px 0.6px var(--pink);
     }
   }
-}
-
-img {
-  border-radius: 50%;
-  border: 0.2em solid var(--pink);
-  height: clamp(2em, 6vw, 3em);
-  background-color: var(--icon-nav);
-  transition: ease-in-out 0.4s;
 
 
+  img {
+    border-radius: 50%;
+    border: 0.2em solid var(--pink);
+    height: clamp(2em, 6vw, 3em);
+    background-color: var(--icon-nav);
+    transition: ease-in-out 0.4s;
+  
+  
+  }
+  img:hover {
+    background-color: var(--primary-one);
+    transform: scale(95%);
+  }
+
 }
-img:hover {
-  background-color: var(--primary-one);
-  transform: scale(95%);
-}
+
+
