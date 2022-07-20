@@ -3,10 +3,12 @@ import { useFetchRecipe, data } from "../hooks/useFetchRecipe";
 import { useSelector } from "react-redux";
 import { Loading } from "../feature/Loading";
 import { RecipeLayout } from "../components/RecipeLayout";
-import './Home.scss'
+import "./Home.scss";
+/*eslint-disable */
 export const Home = () => {
   const loading = useSelector((store) => store.ui.loading);
   const [url, setUrl] = useState("");
+  
   const { data } = useFetchRecipe({ url });
 
   useEffect(() => {
@@ -14,8 +16,8 @@ export const Home = () => {
   }, []);
 
   return (
-    <div className="home___container">
-      <p>home</p>
+    <article className="home___container">
+      <h2 className="headerText">Foodnary</h2>
 
       {loading ? (
         <Loading />
@@ -27,6 +29,6 @@ export const Home = () => {
             })}
         </section>
       )}
-    </div>
+    </article>
   );
 };

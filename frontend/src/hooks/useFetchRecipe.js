@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ui } from "../reducers/ui";
-
+/*eslint-disable */
 export const useFetchRecipe = ({ url }) => {
   const [data, setData] = useState(null)
   const token = useSelector((store) => store.user.token);
